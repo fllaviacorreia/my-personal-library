@@ -1,26 +1,43 @@
 import { BookType, useBooks } from "@/context/booksContext";
 import { StyleSheet, Text, View } from "react-native";
-import Button, { ButtonPros } from "./button";
+import Button from "./button";
 
-export default function Card({...data}: BookType){
+export default function Card(data: BookType){
     const {deleteBook, updateStatusBook} = useBooks();
 
     if(!data) {
         return null;
     }
 
+    const handleDelete = () => {
+        deleteBook(data.id);
+    }
+
+    const handleUpdate = () => {
+        const newStatus = data.status === "read" || data.status === "to-read" ? "reading" : "read";
+        updateStatusBook(data.id, newStatus);
+    }
+
     const statusAndLabel = data.status === "reading"
         ? {label: "Mudar para lido", status: "secondary"} 
         : {label: "Mudar para lendo", status: "primary"};
-
-
 
     return (
         <View id={data.id} style={styles.card}>
             <Text style={styles.title}>{data.title}</Text>
             <Text style={styles.text}>{data.authors}</Text>
-            <Button label="Excluir" size="medium" status="danger" />
-            <Button label={statusAndLabel.label} size="medium" status={statusAndLabel.status as "primary" | "secondary"} />
+            <Button 
+                label="Excluir" 
+                size="medium" 
+                status="danger" 
+                onPress={handleDelete}
+            />
+            <Button 
+                label={statusAndLabel.label} 
+                size="medium" 
+                status={statusAndLabel.status as "primary" | "secondary"} 
+                onPress={handleUpdate}
+            />
         </View>
     )
 }
