@@ -13,7 +13,6 @@ const backgroundMap: Record<string, {}> = {
     outline: { backgroundColor: "transparent", borderWidth: 2, borderColor: "#4da641" },
 }
 
-
 const screenWidth = Dimensions.get('window').width
 
 const widthMap: Record<string, {}> = {
@@ -22,13 +21,10 @@ const widthMap: Record<string, {}> = {
     full: { width: screenWidth, height: 42 },
 }
 
-
 export default function Button({ label, status, size, ...rest }: ButtonPros) {
     const dimension = widthMap[size];
     const backgroundColor = backgroundMap[status];
-    const textColor = status == 'outline' ? "#000" : "#FFF"
-
-
+    const textColor = status == 'outline' ? "#000" : "#FFF";
 
     return (
         <Pressable style={{...styles.button, ...dimension, ...backgroundColor}}>
