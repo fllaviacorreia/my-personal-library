@@ -1,6 +1,6 @@
 import { Dimensions, Pressable, PressableProps, StyleSheet, Text } from "react-native";
 
-type ButtonPros = PressableProps & {
+export type ButtonPros = PressableProps & {
     label: string,
     status: "primary" | "secondary" | "danger" | "outline",
     size: "small" | "medium" | "full",
@@ -9,7 +9,7 @@ type ButtonPros = PressableProps & {
 const backgroundMap: Record<string, {}> = {
     primary: { backgroundColor: "#4da641" },
     secondary: { backgroundColor: "#3092ab" },
-    danger: { backgroundColor: "#b882222" },
+    danger: { backgroundColor: "#b82222" },
     outline: { backgroundColor: "transparent", borderWidth: 2, borderColor: "#4da641" },
 }
 

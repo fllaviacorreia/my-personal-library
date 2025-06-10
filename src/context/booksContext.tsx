@@ -1,20 +1,18 @@
 import { createContext, useContext, useState } from "react"
 import { ToastAndroid } from "react-native";
 
-type StatusBook = { status: 'reading' | 'to-read' | 'read' }
-
-type BookType = {
+export type BookType = {
     id: string,
     title: string,
     authors: string,
-    status: StatusBook,
+    status: 'reading' | 'to-read' | 'read',
 }
 
 const BooksContext = createContext<{
     books: BookType[];
     addBook: (book: Omit<BookType, 'id'>) => void;
     deleteBook: (id: string) => void;
-    updateStatusBook: (id: string, newStatus: StatusBook) => void;
+    updateStatusBook: (id: string, newStatus: string) => void;
     }> ({
     books: [],
     addBook: () => { },
@@ -42,13 +40,15 @@ const BooksProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
         setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id ))
     }
     
-    const updateStatusBook = (id: string, newStatus: StatusBook) => {
-        setBooks((prevBooks) => prevBooks.map((bookP) => bookP.id === id ? {...bookP, status: newStatus} : bookP))
+    const updateStatusBook = (id: string, newStatus: string) => {
+        setBooks((prevBooks) => prevBooks.map((bookP) => bookP.id === id ? {...bookP, status: newStatus as "read" | "reading"} : bookP))
     }
 
-    return <BooksContext.Provider value={{books, addBook, deleteBook, updateStatusBook}}>
+    return (
+    <BooksContext.Provider value={{books, addBook, deleteBook, updateStatusBook}}>
         {children}
     </BooksContext.Provider>
+    )
 }
 
 const useBooks = () => useContext(BooksContext);
