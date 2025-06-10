@@ -9,6 +9,7 @@ export default function Home() {
     const book1: BookType = {id: "adv12", title:"Titulo 1", authors: "Autores 1", status: "reading"}
     const book2: BookType = {id: "adv22", title:"Titulo 2", authors: "Autores 2", status: "to-read"}
     const book3: BookType = {id: "adv32", title:"Titulo 2", authors: "Autores 2", status: "reading"}
+    
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', padding: 25}}>
             <Text> Home Screen</Text>
