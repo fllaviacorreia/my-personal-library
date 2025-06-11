@@ -27,7 +27,7 @@ export default function Button({ label, status, size, ...rest }: ButtonPros) {
     const textColor = status == 'outline' ? "#000" : "#FFF";
 
     return (
-        <Pressable style={{...styles.button, ...dimension, ...backgroundColor}}>
+        <Pressable style={{...styles.button, ...dimension, ...backgroundColor}} {...rest}>
             <Text style={{...styles.text, color: textColor}}>{label}</Text>
         </Pressable>
     )
