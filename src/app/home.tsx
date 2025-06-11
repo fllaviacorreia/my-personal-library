@@ -17,7 +17,6 @@ export default function Home() {
             <Button label="Adicionar livro" size="medium" status="outline" />
             <Card {...book1}/>
             <Card {...book2}/>
-            <Card {...book3}/>
             <Link href="/add">
                 <Text>Ir para ADD</Text>
             </Link>
