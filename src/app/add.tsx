@@ -13,7 +13,6 @@ export default function Add() {
 
 
     const handleAdd = (data: Omit<BookType, 'id'>) => {
-        console.log(data)
         addBook(data);
         router.push('/home');
     }
