@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { ToastAndroid } from "react-native";
+import * as SecureStore from 'expo-secure-store'
 
 export type BookType = {
     id: string,
@@ -26,24 +27,45 @@ const BooksContext = createContext<{
 const BooksProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
     const [books, setBooks] = useState<BookType[]>([]);
 
+    const fetchBooks = async () => {
+        const dataSecureStore = await SecureStore.getItemAsync('mpl-data');
 
-    const addBook = (book: Omit<BookType, 'id'>) => {
+        console.log(dataSecureStore)
+
+        const storedBooks: BookType[] = dataSecureStore ? JSON.parse(dataSecureStore) : []
+        setBooks(storedBooks);
+    }
+
+    useEffect(() => {
+        fetchBooks()
+    }, [])
+
+    const addBook = async (book: Omit<BookType, 'id'>) => {
         const newBook = {
             ...book,
             id: Math.random().toString(36).substring(2, 15)
         }
 
+        await SecureStore.setItemAsync('mpl-data', JSON.stringify(books));
         setBooks((prevBooks) => [...prevBooks, newBook])
-        
         ToastAndroid.show("Livro cadastrado com sucesso.", ToastAndroid.SHORT)
     }
 
-    const deleteBook = (id: string) => {
-        setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id ))
+    const deleteBook = async (id: string) => {
+        const list = books.filter((book) => book.id !== id )
+        await SecureStore.setItemAsync('mpl-data', JSON.stringify(list));
+        setBooks(list)
+        ToastAndroid.show("Livro excluido com sucesso.", ToastAndroid.SHORT)
     }
     
-    const updateStatusBook = (id: string, newStatus: string) => {
-        setBooks((prevBooks) => prevBooks.map((bookP) => bookP.id === id ? {...bookP, status: newStatus as "read" | "reading"} : bookP))
+    const updateStatusBook = async (id: string, newStatus: string) => {
+        const list = books.map(
+            (bookP) => bookP.id === id 
+            ? {...bookP, status: newStatus as "read" | "reading"} 
+            : bookP
+        )
+        await SecureStore.setItemAsync('mpl-data', JSON.stringify(list));
+        setBooks(list)
     }
 
     const getBooksBySection = (books: BookType[]) => {
