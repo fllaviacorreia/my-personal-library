@@ -13,11 +13,13 @@ const BooksContext = createContext<{
     addBook: (book: Omit<BookType, 'id'>) => void;
     deleteBook: (id: string) => void;
     updateStatusBook: (id: string, newStatus: string) => void;
+    getBooksBySection: (books: BookType[]) => { title: string; data: BookType[]; }[],
     }> ({
     books: [],
     addBook: () => { },
     deleteBook: () => { },
-    updateStatusBook: () => { }
+    updateStatusBook: () => { },
+    getBooksBySection: () => []
 })
 
 
@@ -44,8 +46,20 @@ const BooksProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
         setBooks((prevBooks) => prevBooks.map((bookP) => bookP.id === id ? {...bookP, status: newStatus as "read" | "reading"} : bookP))
     }
 
+    const getBooksBySection = (books: BookType[]) => {
+        if(!books) return [];
+
+        const sections = [
+            {title: "📖 Lendo", data: books.filter(book => book.status === "reading")},
+            {title:"✅ Lido", data: books.filter(book => book.status === "read")},
+            {title: "📚 Quero ler", data: books.filter(book => book.status === "to-read")}
+        ];
+
+        return sections.filter(section => section.data.length > 0)
+    }
+
     return (
-    <BooksContext.Provider value={{books, addBook, deleteBook, updateStatusBook}}>
+    <BooksContext.Provider value={{books, addBook, deleteBook, updateStatusBook, getBooksBySection}}>
         {children}
     </BooksContext.Provider>
     )
