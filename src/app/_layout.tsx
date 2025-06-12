@@ -7,7 +7,7 @@ export default function Layout() {
             <Stack initialRouteName='home'>
                 <Stack.Screen
                     name='home'
-                    options={{ title: "Estante Virtual", headerTitleAlign: 'center' }}
+                    options={{ title: "Minha Biblioteca Pessoal", headerTitleAlign: 'center' }}
                 />
                 <Stack.Screen
                     name='add'
