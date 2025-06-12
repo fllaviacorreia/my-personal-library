@@ -66,4 +66,11 @@ A ideia é permitir que o usuário busque novos livros para adicionar à sua est
 
 ---
 
+## Explicação final - RN
+
+📺 [Assista no YouTube - Parte 1](https://youtu.be/FP2FBX0sti4)
+
+📺 [Assista no YouTube - Parte 2](https://youtu.be/eu9KGkZNrqU)
+
+---
 🚧 Bons estudos e mãos à obra!
