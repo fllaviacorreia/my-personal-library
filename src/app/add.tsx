@@ -11,7 +11,6 @@ export default function Add() {
     const { addBook } = useBooks();
     const router = useRouter();
 
-
     const handleAdd = (data: Omit<BookType, 'id'>) => {
         addBook(data);
         router.push('/home');
@@ -20,9 +19,9 @@ export default function Add() {
     const validation = yup.object().shape({
         title: yup.string().min(2, "O título precisa possuir pelo menos 2 caracteres.").required("O título é obrigatório."),
         authors: yup.string().required("O autor é obrigatório."),
-        status: yup.string().oneOf(['to-read', 'reading', 'read'], "Selecione uma das opções").required("O status é obrigatório ."),
-        
+        status: yup.string().oneOf(['to-read', 'reading', 'read'], "Selecione uma das opções válidas.").required("O status é obrigatório ."),
     })
+
     return (
             <Formik
                 initialValues={{ title: "", authors: "", status: "" }}
@@ -53,7 +52,6 @@ export default function Add() {
 
                             <Button label="Salvar" status="secondary" size="medium" onPress={() => handleSubmit()}/>
                         </View>
-
                     )}
             </Formik>
     )

@@ -29,9 +29,6 @@ const BooksProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
 
     const fetchBooks = async () => {
         const dataSecureStore = await SecureStore.getItemAsync('mpl-data');
-
-        console.log(dataSecureStore)
-
         const storedBooks: BookType[] = dataSecureStore ? JSON.parse(dataSecureStore) : []
         setBooks(storedBooks);
     }
@@ -46,8 +43,10 @@ const BooksProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
             id: Math.random().toString(36).substring(2, 15)
         }
 
-        await SecureStore.setItemAsync('mpl-data', JSON.stringify(books));
-        setBooks((prevBooks) => [...prevBooks, newBook])
+        const list = books.concat([newBook])
+
+        await SecureStore.setItemAsync('mpl-data', JSON.stringify({list}));
+        setBooks(list)
         ToastAndroid.show("Livro cadastrado com sucesso.", ToastAndroid.SHORT)
     }
 

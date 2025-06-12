@@ -18,7 +18,7 @@ const screenWidth = Dimensions.get('window').width
 const widthMap: Record<string, {}> = {
     small: { width: screenWidth * 0.3, height: 32 },
     medium: { width: screenWidth * 0.5, height: 36 },
-    full: { width: screenWidth, height: 42 },
+    full: { width: "100%", height: 42 },
 }
 
 export default function Button({ label, status, size, ...rest }: ButtonPros) {
