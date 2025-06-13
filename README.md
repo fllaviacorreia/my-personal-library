@@ -81,4 +81,66 @@ A ideia é permitir que o usuário busque novos livros para adicionar à sua est
 - Screen Home (SectionList)
 
 ---
+
+## 📦 Comandos Git Essenciais
+
+```bash
+# Iniciar um repositório Git
+git init
+
+# Clonar um repositório existente
+git clone <url-do-repositório>
+
+# Adicionar arquivos para staging
+git add .
+
+# Verificar status do repositório
+git status
+
+# Realizar um commit com mensagem
+git commit -m "mensagem do commit"
+
+# Corrigir o último commit (sem alterar o histórico remoto)
+git commit --amend
+
+# Criar ou mudar de branch
+git checkout -b nome-da-branch   # criar nova
+git checkout nome-da-branch      # mudar para uma existente
+
+# Enviar alterações para o repositório remoto
+git push origin nome-da-branch
+
+# Puxar alterações do repositório remoto
+git pull origin nome-da-branch
+
+```
+
+---
+
+## 🧾 Padrões de Commit (Conventional Commits)
+
+Utilizamos o padrão Conventional Commits, que ajuda na legibilidade e automação de changelogs.
+Formato: <tipo>: <descrição>
+Exemplos:
+
+    feat: adiciona tela de cadastro
+
+    fix: corrige erro na navegação
+
+    docs: atualiza instruções no README
+
+
+| Tipo       | Descrição                                     |
+| ---------- | --------------------------------------------- |
+| `feat`     | Nova funcionalidade                           |
+| `fix`      | Correção de bugs                              |
+| `chore`    | Tarefas de manutenção (ex: configs, build)    |
+| `docs`     | Alterações na documentação                    |
+| `style`    | Mudanças de estilo (espaços, identação, etc.) |
+| `refactor` | Refatoração de código (sem mudança de lógica) |
+| `test`     | Adição ou modificação de testes               |
+| `perf`     | Melhorias de performance                      |
+
+---
+
 🚧 Bons estudos e mãos à obra!
