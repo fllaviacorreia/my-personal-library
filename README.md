@@ -120,7 +120,7 @@ git pull origin nome-da-branch
 ## 🧾 Padrões de Commit (Conventional Commits)
 
 Utilizamos o padrão Conventional Commits, que ajuda na legibilidade e automação de changelogs.
-Formato: <tipo>: <descrição>
+Formato: [tipo] : [descrição]
 Exemplos:
 
     feat: adiciona tela de cadastro
