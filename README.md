@@ -113,6 +113,9 @@ git push origin nome-da-branch
 # Puxar alterações do repositório remoto
 git pull origin nome-da-branch
 
+# Sincronizar com um repositório original (quando o seu é um fork)
+git remote add upstream <URL do repositório original>
+
 ```
 
 ---
