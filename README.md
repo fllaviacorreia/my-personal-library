@@ -70,7 +70,15 @@ A ideia é permitir que o usuário busque novos livros para adicionar à sua est
 
 📺 [Assista no YouTube - Parte 1](https://youtu.be/FP2FBX0sti4)
 
+- Rotas
+- Context (Context + Provider + Secure Store)
+- Components Input & Button
+  
+
 📺 [Assista no YouTube - Parte 2](https://youtu.be/eu9KGkZNrqU)
+- Component Card
+- Screen Add Book (Formik + Yup + Picker)
+- Screen Home (SectionList)
 
 ---
 🚧 Bons estudos e mãos à obra!
